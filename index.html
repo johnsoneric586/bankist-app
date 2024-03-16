@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bankist</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo_container">
+        <h1>Login to get started</h1>
+        <img src="assets/icon.png" alt="Bankist logo" id="bankist_logo" />
+      </div>
+      <div class="login_fields">
+        <form class="login" action="">
+          <label for="username">Username:</label>
+          <input type="text" id="username" />
+          <label for="password">Password:</label>
+          <input type="password" id="password" />
+          <button type="submit" class="btn_login">Login</button>
+        </form>
+        <button class="btn_logout">Logout</button>
+      </div>
+    </header>
+
+    <div class="quote">
+      <h2>Banking made <em>simple.</em></h2>
+    </div>
+
+    <main class="main_UI">
+      <div class="current_info">
+        <div class="clock_container">
+          <p>As of:</p>
+          <span id="clock">2/26/2024, 6:31:32 AM EST</span>
+        </div>
+        <div class="current_balance">
+          <h2>Current balance</h2>
+          <p id="balance">$10,000</p>
+        </div>
+      </div>
+
+      <section class="account_movements_container">
+        <div class="account_movements">
+          <div class="movement movement_deposit">
+            <div class="movement_main_info">
+              <h3 class="movement_type">Deposit</h3>
+              <p class="movement_amount">$5000</p>
+            </div>
+            <div class="movement_date_container">
+              <p class="movement_date">2/20/2024</p>
+            </div>
+          </div>
+          <div class="movement movement_withdrawal">
+            <div class="movement_main_info">
+              <h3 class="movement_type">Withdrawal</h3>
+              <p class="movement_amount">-$2500</p>
+            </div>
+            <div class="movement_date_container">
+              <p class="movement_date">2/22/2024</p>
+            </div>
+          </div>
+          <div class="movement movement_deposit">
+            <div class="movement_main_info">
+              <h3 class="movement_type">Deposit</h3>
+              <p class="movement_amount">$5000</p>
+            </div>
+            <div class="movement_date_container">
+              <p class="movement_date">2/6/2024</p>
+            </div>
+          </div>
+          <div class="movement movement_withdrawal">
+            <div class="movement_main_info">
+              <h3 class="movement_type">Withdrawal</h3>
+              <p class="movement_amount">-$1000</p>
+            </div>
+            <div class="movement_date_container">
+              <p class="movement_date">2/6/2024</p>
+            </div>
+          </div>
+          <div class="movement movement_deposit">
+            <div class="movement_main_info">
+              <h3 class="movement_type">Deposit</h3>
+              <p class="movement_amount">$4500</p>
+            </div>
+            <div class="movement_date_container">
+              <p class="movement_date">2/4/2024</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sort button -->
+        <p class="movements_sort">↑Sort</p>
+      </section>
+
+      <!-- Movements summary -->
+      <section class="movements_summary">
+        <div class="summary_left_side">
+          <p>
+            Incoming:
+            <span id="total_deposits">$14,500</span>
+          </p>
+          <p>
+            Withdrawals:
+            <span id="total_withdrawals">$3500</span>
+          </p>
+        </div>
+
+        <div class="summary_right_side">
+          <p>
+            Interest Rate:
+            <span id="interest_percentage">2.5%</span>
+          </p>
+          <p>
+            Interest Amount:
+            <span id="interest_amount">$250</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- Transfers section -->
+      <div class="transfer">
+        <!-- Want to be able to use a button to switch from a "transfer to" action to a "request transfer from" -->
+        <h3>Transfers</h3>
+        <form action="" class="transfer_form">
+          <div class="transfer_radio_buttons">
+            <!-- ------Transfer Request----- -->
+            <label for="transfer_type_request" id="transfer_type_request_label"
+              >Request
+              <input
+                type="radio"
+                name="transfer_type_option"
+                id="transfer_type_request"
+                value="transfer-request"
+                checked
+              />
+            </label>
+
+            <!-- ------Transfer send----- -->
+            <label for="transfer_type_send" id="transfer_type_send_label"
+              >Send
+              <input
+                type="radio"
+                name="transfer_type_option"
+                id="transfer_type_send"
+                value="transfer-send"
+              />
+            </label>
+          </div>
+
+          <div class="transfer_input_fields">
+            <!-- Request from field (shows when "Request" radio button is selected) -->
+            <div class="transfer_request_container">
+              <label
+                for="transfer_request_name"
+                id="transfer_request_name_label"
+                >Request from
+              </label>
+              <input
+                type="text"
+                id="transfer_request_name"
+                class="account_action_input"
+              />
+            </div>
+            <!-- Transfer to field (shows when "send" radio button is selected) -->
+            <div class="transfer_to_container">
+              <label for="transfer_to_name" id="transfer_to_name_label"
+                >Transfer to
+              </label>
+              <input
+                type="text"
+                id="transfer_to_name"
+                class="account_action_input"
+              />
+            </div>
+            <!-- Transfer amount field (will always show) -->
+            <div class="transfer_amount_container">
+              <label for="transfer_amount" id="transfer_amount_label">
+                Amount
+              </label>
+              <input
+                type="number"
+                id="transfer_amount"
+                class="account_action_input amount"
+              />
+            </div>
+          </div>
+
+          <button class="btn_transfer_submit" type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- Loan section -->
+      <div class="loan">
+        <h3>Request Loan</h3>
+        <form action="" class="loan_form">
+          <input
+            type="number"
+            id="loan_amount"
+            class="account_action_input amount"
+          />
+          <label for="loan_amount">Amount </label>
+          <p>
+            Loans are subject to approval and the requested amount
+            <em>must</em> be at least 10% of the smallest account deposit.
+          </p>
+          <button class="btn_loan_submit" type="submit">Request</button>
+        </form>
+      </div>
+
+      <!-- Close account section -->
+      <div class="close_account">
+        <h3>Close Account</h3>
+        <form action="" class="close_account_form">
+          <input
+            type="password"
+            id="close_account_password_field"
+            class="account_action_input"
+          />
+          <label for="close_account_password_field"
+            >Input your password to close your account
+          </label>
+
+          <button class="btn_close_account" type="submit">Submit</button>
+        </form>
+        <!-- Hide this modal -->
+        <div class="close_Account_modal_backdrop display_none"></div>
+        <div class="modal close_account_modal display_none">
+          <p>Are you sure you want to close your account?</p>
+          <div class="close_account_modal_buttons">
+            <button id="close_account_yes" type="submit">Yes</button>
+            <button id="close_account_no" type="submit">No</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="logout_timer_container">
+        <p>You will be logged out in <span id="logout_timer">5:00</span></p>
+      </div>
+
+      <!-- Transfer request modal (for user who has to approve/deny transfer) -->
+      <div class="transfer_request_modal_backdrop"></div>
+      <div class="modal transfer_request_modal">
+        <p>
+          Transfer request from <span id="request_modal_name">ejohnson</span>
+        </p>
+        <p>Amount Requested: $<span id="request_modal_amount">500</span></p>
+        <div id="transfer_approve">Approve</div>
+        <div id="transfer_deny">Deny</div>
+      </div>
+      <!-- Transfer request submitted modal (for user requesting the transfer) -->
+      <div class="transfer_requested_confirmation_backdrop display_none"></div>
+      <div class="modal transfer_requested_confirmation_modal display_none">
+        <p>
+          Your transfer request for $<span id="transfer_modal_confirm_amount"
+            >500</span
+          >
+          was sent to <span id="transfer_modal_confirm_name">Arden</span>.
+        </p>
+        <button class="transfer_confirm_ok">Ok</button>
+      </div>
+
+      <!-- Transfer received modal (for user who logs in and has received a transfer from another account) -->
+      <div class="transfer_received_modal_backdrop display_none"></div>
+      <div class="modal transfer_received_modal display_none">
+        <p>
+          Your received a transfer from
+          <span id="transfer_received_from_name">Arden</span>.
+        </p>
+        <p>Amount: $<span id="transfer_received_amount">500</span></p>
+        <div id="transfer_received_ok">Ok</div>
+      </div>
+    </main>
+
+    <footer></footer>
+  </body>
+  <script src="script.js"></script>
+</html>

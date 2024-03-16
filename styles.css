@@ -1,0 +1,526 @@
+:root {
+  /* Colors */
+  --color-main-bg: #333333;
+  /* TODO FIGURE OUT COLOR SCHEME AT THE END */
+
+  /* Gradient */
+  --main-gradient: linear-gradient(135deg, #00d3ff, #1474e8, #5252ed);
+
+  --main-gradient-hover: linear-gradient(135deg, #a9d2ff, #5b8ce3);
+
+  --red-gradient: linear-gradient(135deg, #ff4d4d, #ff3333);
+
+  /* --green-gradient: ; */
+
+  /* Box Shadow */
+  --main-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
+
+  --secondary-box-shadow: 0px 0px 22px 5px rgba(0, 0, 0, 0.4);
+
+  /* Sizing */
+  --size-xsm: 4px;
+  --size-sm: 8px;
+  --size-md: 12px;
+  --size-lg: 16px;
+  --size-xl: 24px;
+  --size-xxl: 34px;
+  --size-xxxl: 50px;
+
+  /* Fonts */
+  --main-font: 'Montserrat', sans-serif;
+}
+
+/* ----------General Styles---------- */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: var(--main-font);
+  background-color: var(--color-main-bg);
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+
+h3 {
+  text-align: center;
+  padding: var(--size-md);
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  margin: var(--size-sm);
+  background: var(--main-gradient);
+  color: white;
+  border: none;
+  border-radius: var(--size-md);
+  padding: var(--size-sm) var(--size-md);
+  cursor: pointer;
+  font-family: var(--main-font);
+  box-shadow: var(--main-box-shadow);
+  transition: all 0.4s ease;
+}
+
+button:hover {
+  box-shadow: var(--secondary-box-shadow);
+  transform: scale(1.05);
+  background: var(--main-gradient-hover);
+}
+
+input:not([type='radio']) {
+  margin: var(--size-sm) 0;
+}
+
+/* ----------Header---------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--size-md);
+}
+
+.logo_container {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  font-size: var(--size-xl);
+}
+
+#bankist_logo {
+  height: calc(var(--size-xl) * 2);
+  width: calc(var(--size-xl) * 2);
+  margin: 0 var(--size-lg) 0 var(--size-lg);
+}
+
+#username {
+  width: calc(var(--size-xxxl) * 2);
+}
+
+#password {
+  width: calc(var(--size-xxxl) * 2);
+}
+
+.btn_logout {
+  display: none;
+}
+
+.quote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* This will be toggeled on/off */
+}
+
+.quote em {
+  text-decoration: underline;
+}
+
+/* We'll need to hide the quote for now so we can work on the UI, but later we'll bring it back */
+
+/* --------------------Main UI-------------------- */
+.main_UI {
+  width: 100%;
+  padding: 0 var(--size-xxl);
+  box-sizing: border-box;
+  display: grid;
+  /* display: none; */
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+
+  grid-template-columns: 1fr 1fr;
+  column-gap: 25px;
+  row-gap: 10px;
+  /* grid-template-rows: ; */
+
+  grid-template-areas:
+    'accInfo accInfo'
+    'accMovements transfer'
+    'accMovements loan'
+    'movSummary close'
+    'footer footer';
+}
+
+/* ----------Current info section----------  */
+.current_info {
+  grid-area: accInfo;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 calc(var(--size-xxl) * 2) var(--size-lg) calc(var(--size-xxl) * 2);
+  box-sizing: border-box;
+}
+
+/* -----Clock----- */
+.clock_container p {
+  margin: var(--size-sm) 0;
+  font-weight: 600;
+}
+
+#clock {
+  font-size: 18px;
+}
+
+.current_balance h2 {
+  font-size: 16px;
+}
+
+#balance {
+  font-size: var(--size-xl);
+  margin: var(--size-sm) 0;
+}
+
+/* ----------Movements section---------- */
+.account_movements_container {
+  grid-area: accMovements;
+  position: relative;
+}
+
+.account_movements {
+  border-radius: var(--size-lg);
+  width: 100%;
+  height: 400px;
+  overflow-y: scroll;
+
+  position: relative;
+  /* Making position relative so i can position the "sort" element relative to account_movements */
+}
+
+.movement {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--size-sm) 0;
+  padding: var(--size-xsm);
+  padding-right: var(--size-lg);
+}
+
+.movement_type {
+  font-size: var(--size-md);
+  font-weight: 500;
+}
+
+.movement_amount {
+  font-size: var(--size-lg);
+  font-weight: 500;
+  margin: var(--size-sm) 0;
+}
+
+.movement_info {
+  font-size: var(--size-md);
+}
+
+.movement_deposit {
+  background-color: rgba(144, 238, 144, 0.75);
+  color: black;
+}
+
+.movement_withdrawal {
+  background-color: rgba(198, 88, 88, 0.75);
+}
+
+.movements_sort {
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  border-radius: 20px;
+  background-color: rgb(71, 71, 71);
+  padding: var(--size-sm) var(--size-md);
+  transition: all 0.2s ease;
+}
+
+.movements_sort:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background-color: rgb(107, 107, 107);
+}
+
+/* --------------------Movements Summary------------------ */
+.movements_summary {
+  grid-area: movSummary;
+  display: flex;
+  padding: var(--size-xl);
+  padding-top: 0;
+}
+
+.movements_summary p {
+  margin: var(--size-lg) var(--size-xxxl);
+  transition: all 0.3s ease;
+}
+
+.movements_summary p:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+/* --------------------Account actions-------------------- */
+
+/* -----Transfers section----- */
+.transfer {
+  grid-area: transfer;
+  background: var(--main-gradient);
+  border-radius: var(--size-md);
+}
+
+.transfer_form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* -----Radio buttons----- */
+.transfer_radio_buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  align-self: center;
+}
+
+/* -----Transfer input fields------ */
+
+.transfer_input_fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.transfer_request_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  /* display: none; */
+}
+
+#transfer_request_name {
+  width: 125px;
+}
+
+.transfer_to_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  display: none;
+  /* Will dynamically change display with javaScript */
+}
+
+#transfer_to_name {
+  width: 125px;
+}
+
+.transfer_amount_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+/* -----Transfer button----- */
+.btn_transfer_submit {
+  align-self: center;
+}
+
+/* -----Loan section----- */
+.loan {
+  grid-area: loan;
+  background: var(--main-gradient);
+  border-radius: var(--size-md);
+}
+
+.loan_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loan p {
+  margin: var(--size-md);
+  font-size: var(--size-md);
+  text-align: center;
+}
+
+/* -----Close account section----- */
+.close_account {
+  grid-area: close;
+  background: var(--main-gradient);
+  border-radius: var(--size-md);
+}
+
+.close_account_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close_account label {
+  margin-bottom: var(--size-md);
+}
+
+.close_account_modal_buttons {
+  margin-top: var(--size-xxxl);
+}
+
+/* --------------------Logout timer------------------ */
+.logout_timer_container {
+  grid-area: footer;
+  box-sizing: border-box;
+  padding: var(--size-sm);
+  margin: var(--size-xsm);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 5%;
+  text-align: center;
+}
+
+.logout_timer_container p {
+  padding: 0;
+}
+
+/* ----------MODALS---------- */
+.modal {
+  background: var(--main-gradient);
+}
+
+/* ----Transfer request modal----- */
+.transfer_request_modal_backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(5px); /* Apply backdrop filter to blur the background */
+  z-index: 0; /* Ensure the overlay appears below the modal */
+
+  /* default to display: none and only appear when a transfer is actually pending */
+  display: none;
+}
+.transfer_request_modal {
+  height: 50%;
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+
+  /* default to display: none and only appear when a transfer is actually pending */
+  display: none;
+}
+
+.transfer_request_modal p {
+  margin: var(--size-xl) 0;
+}
+
+#transfer_approve {
+  height: 25px;
+  width: 75px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: rgb(116, 210, 121);
+  color: black;
+  transition: all 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--size-lg) var(--size-lg);
+  cursor: pointer;
+}
+
+#transfer_deny {
+  height: 25px;
+  width: 75px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: rgb(198, 88, 88);
+  color: white;
+  transition: all 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--size-lg) 0;
+  cursor: pointer;
+}
+
+/* These are the styles for the modal that appears when the user requests the transfer or receieves a transfer */
+.transfer_requested_confirmation_backdrop,
+.transfer_received_modal_backdrop,
+.close_Account_modal_backdrop {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(5px); /* Apply backdrop filter to blur the background */
+  z-index: 0; /* Ensure the overlay appears below the modal */
+}
+
+.transfer_requested_confirmation_modal,
+.transfer_received_modal,
+.close_account_modal {
+  height: 50%;
+  width: 50%;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.transfer_confirm_ok,
+#transfer_received_ok {
+  margin-top: var(--size-xxxl);
+  width: 75px;
+}
+
+#request_modal_name,
+#request_modal_amount,
+#transfer_modal_confirm_amount,
+#transfer_modal_confirm_name,
+#transfer_received_from_name,
+#transfer_received_amount {
+  font-weight: bold;
+}
+
+#transfer_approve:hover,
+#transfer_deny:hover,
+.transfer_confirm_ok:hover,
+#transfer_received_ok:hover {
+  transform: scale(1.05);
+}
+
+/* -----Utility classes----- */
+
+.display_none {
+  display: none;
+}
